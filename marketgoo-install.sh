@@ -50,6 +50,7 @@ install_whm_addon()
     cp -r  $SRCDIR/whm/sitelock/ $WHMROOT/docroot/ >/dev/null 2>&1
     cp -fv $SRCDIR/whm/addon_marketgoo.cgi $WHMROOT/docroot/cgi/ >/dev/null 2>&1
     cp -fv $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
+#    chmod 0755 $WHMROOT/docroot/cgi/addon_sitelock.cgi
 }
 
 install_cpanel_plugin()
