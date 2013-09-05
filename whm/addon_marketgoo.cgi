@@ -19,5 +19,5 @@ if (!Whostmgr::ACLS::checkacl( 'all' ) ) {
 else
 {
     my $security_token = $ENV{'cp_security_token'} || '';
-    print "<meta http-equiv=\"refresh\" content=\"0;url=$security_token/marketgoo/index.live.php\"/>";
+    print "<meta http-equiv=\"refresh\" content=\"0;url=$security_token/marketgoo/index.php\"/>";
 }
