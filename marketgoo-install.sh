@@ -83,8 +83,8 @@ if [ ! -f /usr/local/cpanel/Cpanel/LiveAPI.pm ]; then
     exit
 fi
 
-echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
 echo
+echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
 download_latest && install_whm_addon && install_cpanel_plugin
 echo "${GREEN}*** DONE ***${RESET}"
 echo
