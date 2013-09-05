@@ -24,6 +24,7 @@ RED=$(tput setaf 1 ; tput bold)
 RESET=$(tput sgr0)
 WHMROOT=/usr/local/cpanel/whostmgr
 TEMPDIR=$(mktemp -d marketgooplugin.XXXXXXXXX)
+SRCDIR=${TEMPDIR}/nimiedades-master
 CPVERSION=$(cat 2>/dev/null /usr/local/cpanel/version)
 
 cleanup()
@@ -39,17 +40,19 @@ download_latest()
 {
     echo
     echo "${WHITE}Downloading latest plug-in version${RESET}"
-    wget -q -O - http://github.com/twoixter/nimiedades/archive/master.tar.gz | tar -xvz -C $TEMPDIR
+    wget -q -O - http://github.com/twoixter/nimiedades/archive/master.tar.gz | tar xz -C $TEMPDIR
 }
 
 install_whm_addon()
 {
     echo "${WHITE}Installing WHM AddOn${NO_COLOUR}"
 
-#    mkdir -p /var/cpanel/apps
+    cp -r  $SRCDIR/whm/sitelock/ $WHMROOT/docroot/ >/dev/null 2>&1
+    cp -fv $SRCDIR/whm/addon_marketgoo.cgi $WHMROOT/docroot/cgi/ >/dev/null 2>&1
+    cp -fv $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
 }
 
-install_whm_addon()
+install_cpanel_plugin()
 {
     echo "${WHITE}Installing Cpanel Plug-in${NO_COLOUR}"
 
@@ -79,6 +82,4 @@ if [ ! -f /usr/local/cpanel/Cpanel/LiveAPI.pm ]; then
 fi
 
 download_latest && install_whm_addon && install_cpanel_plugin
-
 echo "${WHITE}*** DONE ***${RESET}"
-rm -rf $TEMPDIR
