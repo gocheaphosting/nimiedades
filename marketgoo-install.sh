@@ -22,6 +22,7 @@
 WHITE=$(tput setaf 7 ; tput bold)
 RED=$(tput setaf 1 ; tput bold)
 GREEN=$(tput setaf 2 ; tput bold)
+CYAN=$(tput setaf 6 ; tput bold)
 RESET=$(tput sgr0)
 WHMROOT=/usr/local/cpanel/whostmgr
 TEMPDIR=$(mktemp -d marketgooplugin.XXXXXXXXX)
@@ -46,17 +47,16 @@ download_latest()
 
 install_whm_addon()
 {
-    echo "${WHITE}Installing WHM AddOn${NO_COLOUR}"
+    echo "${WHITE}Installing WHM AddOn${RESET}"
 
     cp -r $SRCDIR/whm/marketgoo/ $WHMROOT/docroot/ >/dev/null 2>&1
     cp -f $SRCDIR/whm/addon_marketgoo.cgi $WHMROOT/docroot/cgi/ >/dev/null 2>&1
     cp -f $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
-#    chmod 0755 $WHMROOT/docroot/cgi/addon_sitelock.cgi
 }
 
 install_cpanel_plugin()
 {
-    echo "${WHITE}Installing cPanel Plug-in${NO_COLOUR}"
+    echo "${WHITE}Installing cPanel Plug-in${RESET}"
 
 #    mkdir -p /var/cpanel/apps
 }
@@ -83,6 +83,8 @@ if [ ! -f /usr/local/cpanel/Cpanel/LiveAPI.pm ]; then
     exit
 fi
 
+echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
+echo
 download_latest && install_whm_addon && install_cpanel_plugin
 echo "${GREEN}*** DONE ***${RESET}"
 echo
