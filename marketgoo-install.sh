@@ -21,6 +21,7 @@
 
 WHITE=$(tput setaf 7 ; tput bold)
 RED=$(tput setaf 1 ; tput bold)
+GREEN=$(tput setaf 2 ; tput bold)
 RESET=$(tput sgr0)
 WHMROOT=/usr/local/cpanel/whostmgr
 TEMPDIR=$(mktemp -d marketgooplugin.XXXXXXXXX)
@@ -83,4 +84,5 @@ if [ ! -f /usr/local/cpanel/Cpanel/LiveAPI.pm ]; then
 fi
 
 download_latest && install_whm_addon && install_cpanel_plugin
-echo "${WHITE}*** DONE ***${RESET}"
+echo "${GREEN}*** DONE ***${RESET}"
+echo
