@@ -55,7 +55,7 @@ install_whm_addon()
 
 install_cpanel_plugin()
 {
-    echo "${WHITE}Installing Cpanel Plug-in${NO_COLOUR}"
+    echo "${WHITE}Installing cPanel Plug-in${NO_COLOUR}"
 
 #    mkdir -p /var/cpanel/apps
 }
