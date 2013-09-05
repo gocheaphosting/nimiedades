@@ -1,5 +1,5 @@
 #!/usr/local/cpanel/3rdparty/bin/perl
-#WHMADDON:marketgoo:MarketGoo Configuration:marketgoo.gif
+#WHMADDON:marketgoo:MarketGoo Configuration
 #ACLS:all
 
 use lib '/usr/local/cpanel';

@@ -47,9 +47,9 @@ install_whm_addon()
 {
     echo "${WHITE}Installing WHM AddOn${NO_COLOUR}"
 
-    cp -r  $SRCDIR/whm/sitelock/ $WHMROOT/docroot/ >/dev/null 2>&1
-    cp -fv $SRCDIR/whm/addon_marketgoo.cgi $WHMROOT/docroot/cgi/ >/dev/null 2>&1
-    cp -fv $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
+    cp -r $SRCDIR/whm/marketgoo/ $WHMROOT/docroot/ >/dev/null 2>&1
+    cp -f $SRCDIR/whm/addon_marketgoo.cgi $WHMROOT/docroot/cgi/ >/dev/null 2>&1
+    cp -f $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
 #    chmod 0755 $WHMROOT/docroot/cgi/addon_sitelock.cgi
 }
 
