@@ -88,3 +88,6 @@ echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
 download_latest && install_whm_addon && install_cpanel_plugin
 echo "${GREEN}*** DONE ***${RESET}"
 echo
+
+# House keeping...
+[ -f marketgoo-install.sh ] && rm -f marketgoo-install.sh
