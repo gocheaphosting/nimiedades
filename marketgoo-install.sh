@@ -29,6 +29,7 @@ TEMPDIR=$(mktemp -d marketgooplugin.XXXXXXXXX)
 REMOTE_REPOSITORY=http://github.com/twoixter/nimiedades
 SRCDIR=${TEMPDIR}/nimiedades-master
 CPVERSION=$(cat 2>/dev/null /usr/local/cpanel/version)
+MKTGOODIR=/var/cpanel/marketgoo
 
 cleanup()
 {
@@ -53,8 +54,8 @@ install_whm_addon()
     cp -r $SRCDIR/whm/marketgoo/ $WHMROOT/docroot/ >/dev/null 2>&1
     cp -f $SRCDIR/whm/addon_marketgoo.cgi $WHMROOT/docroot/cgi/ >/dev/null 2>&1
     cp -f $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
-    mkdir -p /var/cpanel/marketgoo
-    cp -f $SRCDIR/VERSION /var/cpanel/marketgoo/VERSION
+    mkdir -p $MKTGOODIR
+    cp -f $SRCDIR/VERSION $MKTGOODIR/VERSION
 
     if [ ! -f $HOME/.marketgoo_partner_id ]; then
         php -r "require('${SRCDIR}/whm/marketgoo/lib.php'); echo generate_partnerid();" > $HOME/.marketgoo_partner_id
@@ -66,14 +67,29 @@ install_whm_addon()
 
 install_cpanel_plugin()
 {
-    echo "${WHITE}Installing cPanel Plug-in${RESET}"
+    mkdir -p $MKTGOODIR
+    cp -r $SRCDIR/cpanel/plugins $MKTGOODIR >/dev/null 2>&1
+    cp -f $SRCDIR/cpanel/install_plugins.sh $MKTGOODIR >/dev/null 2>&1
+    cp -f $SRCDIR/cpanel/uninstall_plugins.sh $MKTGOODIR >/dev/null 2>&1
 
-    mkdir -p /var/cpanel/marketgoo
-    cp -r $SRCDIR/cpanel/plugins /var/cpanel/marketgoo/ >/dev/null 2>&1
-    cp -f $SRCDIR/cpanel/install_plugins.sh /var/cpanel/marketgoo/ >/dev/null 2>&1
-    cp -f $SRCDIR/cpanel/uninstall_plugins.sh /var/cpanel/marketgoo/ >/dev/null 2>&1
+    $MKTGOODIR/install_plugins.sh
 }
 
+uninstall_whm_addon()
+{
+    echo "${WHITE}Uninstalling WHM AddOn${RESET}"
+
+    rm -rf $WHMROOT/docroot/marketgoo/ >/dev/null 2>&1
+    rm -rf $WHMROOT/docroot/cgi/addon_marketgoo.cgi >/dev/null 2>&1
+    rm -rf $WHMROOT/docroot/themes/x/icons/marketgoo.gif >/dev/null 2>&1
+    rm -rf $MKTGOODIR
+}
+
+uninstall_cpanel_plugin()
+{
+    $MKTGOODIR/uninstall_plugins.sh
+    rm -rf $MKTGOODIR
+}
 
 
 trap cleanup HUP PIPE INT QUIT TERM EXIT
@@ -98,9 +114,10 @@ fi
 
 echo
 echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
-if [ -d /var/cpanel/marketgoo ]; then
-    PREVIOUS=`cat /var/cpanel/marketgoo/VERSION`
+if [ -d $MKTGOODIR ]; then
+    PREVIOUS=`cat $MKTGOODIR/VERSION`
     echo "${GREEN} + Detected previous MarketGoo plug-in v${PREVIOUS}. Upgrading.${RESET}"
+    uninstall_cpanel_plugin && unistall_whm_addon
 fi
 download_latest && install_whm_addon && install_cpanel_plugin
 echo "${GREEN}*** DONE ***${RESET}"

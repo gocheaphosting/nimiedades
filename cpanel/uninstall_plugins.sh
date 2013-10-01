@@ -26,7 +26,7 @@ advance_progress()
     echo -n "=========="
 }
 
-echo "${WHITE}Installing cPanel Plugins${RESET} (This may take a couple minutes)"
+echo "${WHITE}Uninstalling cPanel Plugins${RESET} (This may take a couple minutes)"
 display_progress
 
 # Uninstall plugins
@@ -38,8 +38,7 @@ advance_progress && $UNINSTALL_CMD $CWD/plugins/analyze_competitors.cpanelplugin
 advance_progress && $UNINSTALL_CMD $CWD/plugins/monitor_results.cpanelplugin >/dev/null 2>&1
 
 # Uninstall the Group
-advance_progress && $UNINSTALL_CMD $CWD/plugins/marketgoo.cpanelplugin
+advance_progress && $UNINSTALL_CMD $CWD/plugins/marketgoo.cpanelplugin >/dev/null 2>&1
 
 /usr/local/cpanel/bin/rebuild_sprites >/dev/null 2>&1
-
 echo
