@@ -2,10 +2,9 @@
 
 	require("lib.php");
 
-	echo "<pre>";
-	echo "My PartnerID: ".get_partnerid()."\n";
-	echo "Host PartnerID: ".get_host_partnerid()."\n";
-	echo "</pre>";
+	// Report all PHP errors
+	ini_set(‘display_errors’, 1);
+	error_reporting(E_ALL);
 
 ?>
 <!DOCTYPE html>
@@ -54,12 +53,14 @@
             The plug-in is correctly installed and ready to use.
         </div>
 
+<?php	if (is_new_version_available()) { ?>
         <div class="alert alert-danger">
             <strong>There is a new version of the plug-in available.</strong>
-            Please, <a href="#">click here</a> for installation instructions
-            <br />Installed version: <strong>1.0</strong>
-            &mdash; new version: <strong>1.2</strong>
+            Please, <a href="http://www.marketgoo.com/cpanel/" target="_blank">click here</a> for installation instructions
+            <br />Installed version: <strong><?php echo get_installed_version(); ?></strong>
+            &mdash; new version: <strong><?php echo get_remote_version(); ?></strong>
         </div>
+<?php	} ?>
 
         <div class="panel panel-primary">
             <div class="panel-heading">

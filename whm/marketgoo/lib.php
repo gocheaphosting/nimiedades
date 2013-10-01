@@ -38,18 +38,10 @@ function get_partnerid()
 {
 	$usr = posix_getpwnam($_SERVER["REMOTE_USER"]);
 	if (!file_exists($usr["dir"]."/".MKTGOO_PARTNERID_FILE)) {
-		
-		echo "Generating new ID\n";
-		print_r($usr);
-		
 		$new_partner_id = generate_partnerid();
 		file_put_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
 		return $new_partner_id;
 	} else {
-
-		echo "Existing ID\n";
-		print_r($usr);
-
 		return file_get_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE);
 	}
 }
@@ -59,19 +51,44 @@ function get_host_partnerid()
 {
 	$usr = posix_getpwuid(0);
 	if (!file_exists($usr["dir"]."/".MKTGOO_PARTNERID_FILE)) {
-
-		echo "Generating new ID (HOST)\n";
-		print_r($usr);
-
 		$new_partner_id = generate_partnerid();
 		file_put_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
 		return $new_partner_id;
 	} else {
-		echo "Existing ID (HOST)\n";
-		print_r($usr);
-
 		return file_get_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE);
 	}
+}
+
+//-----------------------------------------------------------------------------
+function get_remote_version()
+{
+	static $remote_version = "";
+
+	if (empty($remote_version)) {
+		$remote_version = @file_get_contents("https://raw.".MKTGOO_REMOTE_REPOSITORY."/master/VERSION");
+	}
+	return $remote_version;
+}
+
+//-----------------------------------------------------------------------------
+function get_installed_version()
+{
+	static $local_version = "";
+
+	if (empty($local_version)) {
+		$local_version = @file_get_contents("/var/cpanel/marketgoo/VERSION");
+	}
+	return $local_version;
+}
+
+
+//-----------------------------------------------------------------------------
+function is_new_version_available()
+{
+	$remote = get_remote_version();
+	$local  = get_installed_version();
+
+	return strlen($remote) && strlen($local) && ($remote != $local);
 }
 
 

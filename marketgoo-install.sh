@@ -11,11 +11,11 @@
 #
 #
 #   Download and execute this file in your shell:
-#   $ wget http://raw.github.com/twoixter/nimiedades/master/marketgoo-install.sh
+#   $ wget http://raw.github.com/marketgoo/cpanel.plugin/master/marketgoo-install.sh
 #   $ /bin/sh ./marketgoo-install.sh
 #
 #   Execute installer directly from GitHub
-#   $ wget -q -O - http://raw.github.com/twoixter/nimiedades/master/marketgoo-install.sh | sh
+#   $ wget -q -O - http://raw.github.com/marketgoo/cpanel.plugin/master/marketgoo-install.sh | sh
 #
 ##############################################################################
 
@@ -26,6 +26,7 @@ CYAN=$(tput setaf 6 ; tput bold)
 RESET=$(tput sgr0)
 WHMROOT=/usr/local/cpanel/whostmgr
 TEMPDIR=$(mktemp -d marketgooplugin.XXXXXXXXX)
+REPO=http://github.com/twoixter/nimiedades
 SRCDIR=${TEMPDIR}/nimiedades-master
 CPVERSION=$(cat 2>/dev/null /usr/local/cpanel/version)
 
@@ -42,7 +43,7 @@ download_latest()
 {
     echo
     echo "${WHITE}Downloading latest plug-in version${RESET}"
-    wget -q -O - http://github.com/twoixter/nimiedades/archive/master.tar.gz | tar xz -C $TEMPDIR
+    wget -q -O - ${REMOTE_REPOSITORY}/archive/master.tar.gz | tar xz -C $TEMPDIR
 }
 
 install_whm_addon()
