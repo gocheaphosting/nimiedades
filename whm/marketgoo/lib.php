@@ -13,7 +13,7 @@
  */
 
 define("MKTGOO_PARTNERID_FILE", ".marketgoo_partner_id");
-define("MKTGOO_REMOTE_REPOSITORY", "github.com/twoixter/nimiedades");
+define("MKTGOO_REMOTE_REPOSITORY", "github.com/marketgoo/cpanel.plugin");
 
 //-----------------------------------------------------------------------------
 function generate_partnerid()
