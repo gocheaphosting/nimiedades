@@ -30,7 +30,7 @@ echo "${WHITE}Installing cPanel Plugins${RESET}   (This may take a couple minute
 display_progress
 
 # Create the Group
-advance_progress && $INSTALL_CMD $CWD/plugins/marketgoo.cpanelplugin >/dev/null 2>&1
+$INSTALL_CMD $CWD/plugins/marketgoo.cpanelplugin >/dev/null 2>&1
 
 # Create plugins
 advance_progress && $INSTALL_CMD $CWD/plugins/free_seo_starter_pack.cpanelplugin >/dev/null 2>&1
