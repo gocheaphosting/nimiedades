@@ -70,6 +70,8 @@ install_cpanel_plugin()
 
     mkdir -p /var/cpanel/marketgoo
     cp -r $SRCDIR/cpanel/plugins /var/cpanel/marketgoo/ >/dev/null 2>&1
+    cp -f $SRCDIR/cpanel/install_plugins.sh /var/cpanel/marketgoo/ >/dev/null 2>&1
+    cp -f $SRCDIR/cpanel/uninstall_plugins.sh /var/cpanel/marketgoo/ >/dev/null 2>&1
 }
 
 
