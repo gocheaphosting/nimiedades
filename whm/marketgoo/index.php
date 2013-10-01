@@ -2,7 +2,7 @@
 
 	require("lib.php");
 
-	// Report all PHP errors
+	// Report all PHP errors until Plug-in version 1.0 for easy debuging
 	ini_set(‘display_errors’, 1);
 	error_reporting(E_ALL);
 
@@ -55,15 +55,14 @@
 
 <?php	if (is_new_version_available()) { ?>
         <div class="alert alert-danger">
-            <strong>There is a new version of the plug-in available.
-			[<?php echo get_remote_version(); ?>]</strong><br />
+            <strong>There is a new version of the plug-in available.</strong><br />
             Please, <a href="http://www.marketgoo.com/cpanel/" target="_blank">click here</a> for installation instructions
         </div>
 <?php	} ?>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Your automatically generated <strong>Partner ID</strong>
+                Your <strong>Partner ID</strong>
             </div>
             <div class="panel-body">
                 <code><?php echo get_partnerid(); ?></code>
@@ -91,8 +90,8 @@
 
             <dt>How can I subscribe to your partnership program?</dt>
             <dd>Our partnership program is not yet publicy available. We've
-                just presented our plug-in at the cPanel Conference'13 in New
-                Orleans as a first step. You'll be able to register after the
+                just releasing our plug-in at the cPanel Conference'13 in New
+                Orleans. You'll be able to register after the
                 event. Please <a href="mailto:support@marketgoo.com">contact
                 support</a> if you want to be notified about availability.</dd>
 
