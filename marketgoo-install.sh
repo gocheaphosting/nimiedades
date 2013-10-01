@@ -54,6 +54,11 @@ install_whm_addon()
     cp -f $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
     mkdir -p /var/cpanel/marketgoo
     cp -f $SRCDIR/VERSION /var/cpanel/marketgoo/VERSION
+
+    if [ ! -f $HOME/.marketgoo_partner_id]; then
+        php -r "require('${SRCDIR}/whm/marketgoo/lib.php'); echo generate_partnerid();" > $HOME/.marketgoo_partner_id
+    fi
+    cat $HOME/.marketgoo_partner_id
 }
 
 install_cpanel_plugin()
@@ -89,7 +94,6 @@ if [ -d /var/cpanel/marketgoo ]; then
     PREVIOUS=`cat /var/cpanel/marketgoo/VERSION`
     echo
     echo "${CYAN}Detected installed MarketGoo plug-in v${PREVIOUS}. Doing upgrade.${RESET}"
-    echo
 fi
 
 echo
