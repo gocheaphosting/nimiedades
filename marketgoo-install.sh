@@ -90,14 +90,12 @@ if [ ! -f /usr/local/cpanel/Cpanel/LiveAPI.pm ]; then
     exit
 fi
 
-if [ -d /var/cpanel/marketgoo ]; then
-    PREVIOUS=`cat /var/cpanel/marketgoo/VERSION`
-    echo
-    echo "${CYAN}Detected installed MarketGoo plug-in v${PREVIOUS}. Doing upgrade.${RESET}"
-fi
-
 echo
 echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
+if [ -d /var/cpanel/marketgoo ]; then
+    PREVIOUS=`cat /var/cpanel/marketgoo/VERSION`
+    echo "${GREEN}Detected previous MarketGoo plug-in v${PREVIOUS}. Upgrading.${RESET}"
+fi
 download_latest && install_whm_addon && install_cpanel_plugin
 echo "${GREEN}*** DONE ***${RESET}"
 echo
