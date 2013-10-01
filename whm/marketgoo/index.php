@@ -3,7 +3,7 @@
 	require("lib.php");
 
 	echo "<pre>";
-	echo "My PartnerID: ".get_host_partnerid()."\n";
+	echo "My PartnerID: ".get_partnerid()."\n";
 	echo "Host PartnerID: ".get_host_partnerid()."\n";
 	echo "</pre>";
 
