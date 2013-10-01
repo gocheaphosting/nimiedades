@@ -55,7 +55,7 @@
 
 <?php	if (is_new_version_available()) { ?>
         <div class="alert alert-danger">
-            <strong>There is a new version of the plug-in available.</strong>
+            <strong>There is a new version of the plug-in available.</strong><br />
             Please, <a href="http://www.marketgoo.com/cpanel/" target="_blank">click here</a> for installation instructions
             <br />Installed version: <strong><?php echo get_installed_version(); ?></strong>
             &mdash; new version: <strong><?php echo get_remote_version(); ?></strong>
