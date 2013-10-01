@@ -25,9 +25,9 @@ function generate_partnerid()
 
 	$out = "";
     for ($t = floor(log($in, $base)); $t >= 0; $t--) {
-        $bcp = bcpow($base, $t);
+        $bcp = pow($base, $t);
         $a   = floor($in / $bcp) % $base;
-        $out = $out . substr($index, $a, 1);
+        $out = $out.substr($index, $a, 1);
         $in  = $in - ($a * $bcp);
     }
     return substr($out, 0, 10);
@@ -37,6 +37,19 @@ function generate_partnerid()
 function get_partnerid()
 {
 	$pwuid = posix_getpwuid(posix_getuid());
+	if (!file_exists($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE)) {
+		$new_partner_id = generate_partnerid();
+		file_put_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
+		return $new_partner_id;
+	} else {
+		return file_get_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE);
+	}
+}
+
+//-----------------------------------------------------------------------------
+function get_host_partnerid()
+{
+	$pwuid = posix_getpwuid(0);
 	if (!file_exists($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE)) {
 		$new_partner_id = generate_partnerid();
 		file_put_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
