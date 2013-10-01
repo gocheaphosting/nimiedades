@@ -26,7 +26,7 @@ CYAN=$(tput setaf 6 ; tput bold)
 RESET=$(tput sgr0)
 WHMROOT=/usr/local/cpanel/whostmgr
 TEMPDIR=$(mktemp -d marketgooplugin.XXXXXXXXX)
-REPO=http://github.com/twoixter/nimiedades
+REMOTE_REPOSITORY=http://github.com/twoixter/nimiedades
 SRCDIR=${TEMPDIR}/nimiedades-master
 CPVERSION=$(cat 2>/dev/null /usr/local/cpanel/version)
 
