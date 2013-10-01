@@ -56,8 +56,10 @@ install_whm_addon()
     cp -f $SRCDIR/VERSION /var/cpanel/marketgoo/VERSION
 
     if [ ! -f $HOME/.marketgoo_partner_id ]; then
-        echo "${GREEN}Generating new Partner ID${RESET}"
         php -r "require('${SRCDIR}/whm/marketgoo/lib.php'); echo generate_partnerid();" > $HOME/.marketgoo_partner_id
+        echo "${GREEN} + Generating new Partner ID: " `cat $HOME/.marketgoo_partner_id` "${RESET}"
+    else
+        echo "${GREEN} + Current Partner ID: " `cat $HOME/.marketgoo_partner_id` "${RESET}"
     fi
 }
 
@@ -94,7 +96,7 @@ echo
 echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
 if [ -d /var/cpanel/marketgoo ]; then
     PREVIOUS=`cat /var/cpanel/marketgoo/VERSION`
-    echo "${GREEN}Detected previous MarketGoo plug-in v${PREVIOUS}. Upgrading.${RESET}"
+    echo "${GREEN} + Detected previous MarketGoo plug-in v${PREVIOUS}. Upgrading.${RESET}"
 fi
 download_latest && install_whm_addon && install_cpanel_plugin
 echo "${GREEN}*** DONE ***${RESET}"
