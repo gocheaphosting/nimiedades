@@ -36,7 +36,7 @@ function generate_partnerid()
 //-----------------------------------------------------------------------------
 function get_partnerid()
 {
-	$pwuid = posix_getpwuid(posix_getuid());
+	$pwuid = posix_getpwnam($_SERVER["REMOTE_USER"]);
 	if (!file_exists($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE)) {
 		$new_partner_id = generate_partnerid();
 		file_put_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);

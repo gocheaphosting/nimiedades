@@ -3,7 +3,8 @@
 	require("lib.php");
 
 	echo "<pre>";
-	echo get_host_partnerid();
+	echo "My PartnerID: ".get_host_partnerid()."\n";
+	echo "Host PartnerID: ".get_host_partnerid()."\n";
 	echo "</pre>";
 
 ?>
@@ -65,7 +66,7 @@
                 Your automatically generated <strong>Partner ID</strong>
             </div>
             <div class="panel-body">
-                <code>aASdfSDfsERe43FSdfsd</code>
+                <code><?php echo get_partnerid(); ?></code>
             </div>
         </div>
 
