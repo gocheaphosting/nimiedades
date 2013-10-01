@@ -1,15 +1,15 @@
 #cpanel plugin file 1.0 (for use with /usr/local/cpanel/bin/register_cpanelplugin)
 version: 1.0
 name:marketgoo
-description:MarketGoo Tools
+description:Online Marketing Tools
 featuremanager:1
 url:marketgoo/index.php
 acontent:
 onclick:
 if:
-itemorder:999
-itemdesc:MarketGoo Tools
-group:software
+itemorder:1
+itemdesc:Free SEO Starter Pack
+group:new
 image:iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAFbUlEQVRIx52WbWxTVRjHf/fe095u
 XTvW4gxldLKMWUYEA2YzijFuGj6oaNREQ8giRI2CMYtGE/1E1PgaX4KCUaMxhCBBYwwhGCMBFcJg
 URIk27plvHSsl5et3crW7t719h4/rI516xh4Pt1znuc8z7n/8/z/51GYayjC7VlY61lUX3prQ7Cp
