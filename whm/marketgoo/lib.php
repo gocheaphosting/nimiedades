@@ -36,10 +36,11 @@ function generate_partnerid()
 //-----------------------------------------------------------------------------
 function get_partnerid()
 {
-	if (!file_exists("~/".MKTGOO_PARTNERID_FILE)) {
+	$pwuid = posix_getpwuid(posix_getuid());
+	if (!file_exists($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE)) {
 		return "NO EXISTE";
 	} else {
-		return file_get_contents("~/".MKTGOO_PARTNERID_FILE);
+		return file_get_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE);
 	}
 }
 
