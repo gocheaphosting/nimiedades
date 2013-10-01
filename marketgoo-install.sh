@@ -55,7 +55,7 @@ install_whm_addon()
     mkdir -p /var/cpanel/marketgoo
     cp -f $SRCDIR/VERSION /var/cpanel/marketgoo/VERSION
 
-    if [ ! -f $HOME/.marketgoo_partner_id]; then
+    if [ ! -f $HOME/.marketgoo_partner_id ]; then
         php -r "require('${SRCDIR}/whm/marketgoo/lib.php'); echo generate_partnerid();" > $HOME/.marketgoo_partner_id
     fi
     cat $HOME/.marketgoo_partner_id
