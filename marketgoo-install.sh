@@ -1,13 +1,13 @@
 #!/bin/sh
 ##############################################################################
-#                         _        _                    
-#                        | |      | |                   
-#    _ __ ___   __ _ _ __| | _____| |_ __ _  ___   ___  
-#   | '_ ` _ \ / _` | '__| |/ / _ \ __/ _` |/ _ \ / _ \ 
+#                         _        _
+#                        | |      | |
+#    _ __ ___   __ _ _ __| | _____| |_ __ _  ___   ___
+#   | '_ ` _ \ / _` | '__| |/ / _ \ __/ _` |/ _ \ / _ \
 #   | | | | | | (_| | |  |   <  __/ || (_| | (_) | (_) |
-#   |_| |_| |_|\__,_|_|  |_|\_\___|\__\__, |\___/ \___/ 
-#                                      __/ |            
-#   MarketGoo Plug-in for cPanel      |___/             
+#   |_| |_| |_|\__,_|_|  |_|\_\___|\__\__, |\___/ \___/
+#                                      __/ |
+#   MarketGoo Plug-in for cPanel      |___/
 #
 #
 #   Download and execute this file in your shell:
@@ -52,6 +52,8 @@ install_whm_addon()
     cp -r $SRCDIR/whm/marketgoo/ $WHMROOT/docroot/ >/dev/null 2>&1
     cp -f $SRCDIR/whm/addon_marketgoo.cgi $WHMROOT/docroot/cgi/ >/dev/null 2>&1
     cp -f $SRCDIR/whm/marketgoo.gif $WHMROOT/docroot/themes/x/icons/ >/dev/null 2>&1
+    mkdir -p /var/cpanel/marketgoo
+    cp -f $SRCDIR/VERSION /var/cpanel/marketgoo/VERSION
 }
 
 install_cpanel_plugin()
@@ -81,6 +83,13 @@ if [ ! -f /usr/local/cpanel/Cpanel/LiveAPI.pm ]; then
     echo "(current Cpanel version: $CPVERSION)"
     echo
     exit
+fi
+
+if [ -d /var/cpanel/marketgoo ]; then
+    PREVIOUS=`cat /var/cpanel/marketgoo/VERSION`
+    echo
+    echo "${CYAN}Detected installed MarketGoo plug-in v${PREVIOUS}. Doing upgrade.${RESET}"
+    echo
 fi
 
 echo
