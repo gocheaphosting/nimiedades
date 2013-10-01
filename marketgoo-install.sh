@@ -68,7 +68,8 @@ install_cpanel_plugin()
 {
     echo "${WHITE}Installing cPanel Plug-in${RESET}"
 
-#    mkdir -p /var/cpanel/apps
+    mkdir -p /var/cpanel/marketgoo
+    cp -r $SRCDIR/cpanel/plugins /var/cpanel/marketgoo >/dev/null 2>&1
 }
 
 
