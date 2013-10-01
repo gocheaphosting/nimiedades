@@ -36,26 +36,41 @@ function generate_partnerid()
 //-----------------------------------------------------------------------------
 function get_partnerid()
 {
-	$pwuid = posix_getpwnam($_SERVER["REMOTE_USER"]);
-	if (!file_exists($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE)) {
+	$usr = posix_getpwnam($_SERVER["REMOTE_USER"]);
+	if (!file_exists($usr["dir"]."/".MKTGOO_PARTNERID_FILE)) {
+		
+		echo "Generating new ID\n";
+		print_r($usr);
+		
 		$new_partner_id = generate_partnerid();
-		file_put_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
+		file_put_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
 		return $new_partner_id;
 	} else {
-		return file_get_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE);
+
+		echo "Existing ID\n";
+		print_r($usr);
+
+		return file_get_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE);
 	}
 }
 
 //-----------------------------------------------------------------------------
 function get_host_partnerid()
 {
-	$pwuid = posix_getpwuid(0);
-	if (!file_exists($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE)) {
+	$usr = posix_getpwuid(0);
+	if (!file_exists($usr["dir"]."/".MKTGOO_PARTNERID_FILE)) {
+
+		echo "Generating new ID (HOST)\n";
+		print_r($usr);
+
 		$new_partner_id = generate_partnerid();
-		file_put_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
+		file_put_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE, $new_partner_id);
 		return $new_partner_id;
 	} else {
-		return file_get_contents($pwuid["dir"]."/".MKTGOO_PARTNERID_FILE);
+		echo "Existing ID (HOST)\n";
+		print_r($usr);
+
+		return file_get_contents($usr["dir"]."/".MKTGOO_PARTNERID_FILE);
 	}
 }
 
