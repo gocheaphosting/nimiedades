@@ -3,7 +3,7 @@ version: 1.0
 name:monitor_results
 description:Monitor Results
 featuremanager:1
-url:marketgoo/index.php?item=results
+url:marketgoo/index.live.php?item=results
 acontent:
 onclick:
 if:

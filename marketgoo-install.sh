@@ -30,6 +30,7 @@ REMOTE_REPOSITORY=http://github.com/twoixter/nimiedades
 SRCDIR=${TEMPDIR}/nimiedades-master
 CPVERSION=$(cat 2>/dev/null /usr/local/cpanel/version)
 MKTGOODIR=/var/cpanel/marketgoo
+THEMEDIR=/usr/local/cpanel/base/frontend/default
 
 cleanup()
 {
@@ -59,9 +60,9 @@ install_whm_addon()
 
     if [ ! -f $HOME/.marketgoo_partner_id ]; then
         php -r "require('${SRCDIR}/whm/marketgoo/lib.php'); echo generate_partnerid();" > $HOME/.marketgoo_partner_id
-        echo "${GREEN} + Generating new Partner ID:" `cat $HOME/.marketgoo_partner_id` "${RESET}"
+        echo "${GREEN} +++ Generating new Partner ID:" `cat $HOME/.marketgoo_partner_id` "${RESET}"
     else
-        echo "${GREEN} + Current Partner ID:" `cat $HOME/.marketgoo_partner_id` "${RESET}"
+        echo "${GREEN} +++ Current Partner ID:" `cat $HOME/.marketgoo_partner_id` "${RESET}"
     fi
 }
 
@@ -71,6 +72,7 @@ install_cpanel_plugin()
     cp -r $SRCDIR/cpanel/plugins $MKTGOODIR >/dev/null 2>&1
     cp -f $SRCDIR/cpanel/install_plugins.sh $MKTGOODIR >/dev/null 2>&1
     cp -f $SRCDIR/cpanel/uninstall_plugins.sh $MKTGOODIR >/dev/null 2>&1
+    cp -r $SRCDIR/cpanel/marketgoo/ $THEMEDIR/ >/dev/null 2>&1
 
     $MKTGOODIR/install_plugins.sh
 }
@@ -88,6 +90,7 @@ uninstall_whm_addon()
 uninstall_cpanel_plugin()
 {
     $MKTGOODIR/uninstall_plugins.sh
+    rm -rf $THEMEDIR/marketgoo >/dev/null 2>&1
     rm -rf $MKTGOODIR
 }
 
@@ -116,8 +119,8 @@ echo
 echo "${CYAN}Installing MarketGoo plug-in for cPanel/WHM${RESET}"
 if [ -d $MKTGOODIR ]; then
     PREVIOUS=`cat $MKTGOODIR/VERSION`
-    echo "${GREEN} + Detected previous MarketGoo plug-in v${PREVIOUS}. Upgrading.${RESET}"
-    uninstall_cpanel_plugin && unistall_whm_addon
+    echo "${GREEN} +++ Detected previous MarketGoo plug-in v${PREVIOUS}. Upgrading.${RESET}"
+    uninstall_cpanel_plugin && uninstall_whm_addon
 fi
 download_latest && install_whm_addon && install_cpanel_plugin
 echo "${GREEN}*** DONE ***${RESET}"

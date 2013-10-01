@@ -3,7 +3,7 @@ version: 1.0
 name:analyze_competitors
 description:Analyze Competitors
 featuremanager:1
-url:marketgoo/index.php?item=competitors
+url:marketgoo/index.live.php?item=competitors
 acontent:
 onclick:
 if:

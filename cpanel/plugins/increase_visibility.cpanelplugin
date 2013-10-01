@@ -3,7 +3,7 @@ version: 1.0
 name:increase_visibility
 description:Increase Visibility
 featuremanager:1
-url:marketgoo/index.php?item=links
+url:marketgoo/index.live.php?item=links
 acontent:
 onclick:
 if:

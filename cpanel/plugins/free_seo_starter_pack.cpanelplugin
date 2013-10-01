@@ -3,7 +3,7 @@ version: 1.0
 name:free_seo_starter_pack
 description:Free SEO Starter Pack
 featuremanager:1
-url:marketgoo/index.php?item=seopack
+url:marketgoo/index.live.php?item=seopack
 acontent:
 onclick:
 if:

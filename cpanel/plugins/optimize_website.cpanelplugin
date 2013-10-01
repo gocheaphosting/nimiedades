@@ -3,7 +3,7 @@ version: 1.0
 name:optimize_website
 description:Optimize Website
 featuremanager:1
-url:marketgoo/index.php?item=web
+url:marketgoo/index.live.php?item=web
 acontent:
 onclick:
 if:

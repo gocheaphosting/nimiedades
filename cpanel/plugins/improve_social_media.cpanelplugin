@@ -3,7 +3,7 @@ version: 1.0
 name:improve_social_media
 description:Improve Social Media
 featuremanager:1
-url:marketgoo/index.php?item=social
+url:marketgoo/index.live.php?item=social
 acontent:
 onclick:
 if:
