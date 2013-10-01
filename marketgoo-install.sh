@@ -57,9 +57,9 @@ install_whm_addon()
 
     if [ ! -f $HOME/.marketgoo_partner_id ]; then
         php -r "require('${SRCDIR}/whm/marketgoo/lib.php'); echo generate_partnerid();" > $HOME/.marketgoo_partner_id
-        echo "${GREEN} + Generating new Partner ID: " `cat $HOME/.marketgoo_partner_id` "${RESET}"
+        echo "${GREEN} + Generating new Partner ID:" `cat $HOME/.marketgoo_partner_id` "${RESET}"
     else
-        echo "${GREEN} + Current Partner ID: " `cat $HOME/.marketgoo_partner_id` "${RESET}"
+        echo "${GREEN} + Current Partner ID:" `cat $HOME/.marketgoo_partner_id` "${RESET}"
     fi
 }
 

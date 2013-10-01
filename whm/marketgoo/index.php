@@ -1,6 +1,10 @@
 <?php
 
-require("lib.php");
+	require("lib.php");
+
+	echo "<pre>";
+	echo get_partnerid();
+	echo "</pre>";
 
 ?>
 <!DOCTYPE html>

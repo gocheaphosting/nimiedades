@@ -12,7 +12,9 @@
  *
  */
 
+define("MKTGOO_PARTNERID_FILE", ".marketgoo_partner_id");
 
+//-----------------------------------------------------------------------------
 function generate_partnerid()
 {
     $index = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -30,5 +32,16 @@ function generate_partnerid()
     }
     return substr($out, 0, 10);
 }
+
+//-----------------------------------------------------------------------------
+function get_partnerid()
+{
+	if (!file_exists("~/".MKTGOO_PARTNERID_FILE)) {
+		return "NO EXISTE";
+	} else {
+		return file_get_contents("~/".MKTGOO_PARTNERID_FILE);
+	}
+}
+
 
 ?>
